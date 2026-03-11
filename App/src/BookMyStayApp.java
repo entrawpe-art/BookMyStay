@@ -24,7 +24,7 @@
  * @version 1.0
  */
 
-public class UseCase1HotelBookingApp {
+public class BookMyStayApp {
 
     /**
      * Application entry point.
