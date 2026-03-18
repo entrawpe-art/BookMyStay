@@ -1,86 +1,41 @@
-// Abstract class representing a generic hotel room
-abstract class Room {
+public class RoomSearchService {
 
-    /** Number of beds available in the room */
-    protected int numberOfBeds;
+    /**
+     * Displays available rooms with details and pricing.
+     * This method only reads data and does NOT modify inventory.
+     */
+    public void searchAvailableRooms(
+            RoomInventory inventory,
+            Room singleRoom,
+            Room doubleRoom,
+            Room suiteRoom) {
 
-    /** Total size of the room in square feet */
-    protected int squareFeet;
+        System.out.println("\n===== Available Rooms =====");
 
-    /** Price charged per night for this room type */
-    protected double pricePerNight;
+        // Check Single Room availability
+        int singleAvailable = inventory.getAvailability("SingleRoom");
+        if (singleAvailable > 0) {
+            System.out.println("\nSingle Room:");
+            singleRoom.displayRoomDetails();
+            System.out.println("Available Rooms: " + singleAvailable);
+        }
 
-    // Constructor used by child classes
-    public Room(int numberOfBeds, int squareFeet, double pricePerNight) {
-        this.numberOfBeds = numberOfBeds;
-        this.squareFeet = squareFeet;
-        this.pricePerNight = pricePerNight;
-    }
+        // Check Double Room availability
+        int doubleAvailable = inventory.getAvailability("DoubleRoom");
+        if (doubleAvailable > 0) {
+            System.out.println("\nDouble Room:");
+            doubleRoom.displayRoomDetails();
+            System.out.println("Available Rooms: " + doubleAvailable);
+        }
 
-    // Method to display room details
-    public void displayRoomDetails() {
-        System.out.println("Beds: " + numberOfBeds);
-        System.out.println("Room Size: " + squareFeet + " sq ft");
-        System.out.println("Price per Night: $" + pricePerNight);
-    }
-}
+        // Check Suite Room availability
+        int suiteAvailable = inventory.getAvailability("SuiteRoom");
+        if (suiteAvailable > 0) {
+            System.out.println("\nSuite Room:");
+            suiteRoom.displayRoomDetails();
+            System.out.println("Available Rooms: " + suiteAvailable);
+        }
 
-// Single Room class
-class SingleRoom extends Room {
-
-    public SingleRoom() {
-        super(1, 200, 1000);
-    }
-}
-
-// Double Room class
-class DoubleRoom extends Room {
-
-    public DoubleRoom() {
-        super(2, 350, 1800);
-    }
-}
-
-// Suite Room class
-class SuiteRoom extends Room {
-
-    public SuiteRoom() {
-        super(3, 600, 3500);
-    }
-}
-
-// Main Application
-public class BookMyStayApp {
-
-    public static void main(String[] args) {
-
-        // Create room objects
-        Room singleRoom = new SingleRoom();
-        Room doubleRoom = new DoubleRoom();
-        Room suiteRoom = new SuiteRoom();
-
-        // Static availability variables
-        int singleAvailability = 5;
-        int doubleAvailability = 3;
-        int suiteAvailability = 2;
-
-        System.out.println("===== Hotel Room Availability =====\n");
-
-        System.out.println("Single Room:");
-        singleRoom.displayRoomDetails();
-        System.out.println("Available Rooms: " + singleAvailability);
-        System.out.println();
-
-        System.out.println("Double Room:");
-        doubleRoom.displayRoomDetails();
-        System.out.println("Available Rooms: " + doubleAvailability);
-        System.out.println();
-
-        System.out.println("Suite Room:");
-        suiteRoom.displayRoomDetails();
-        System.out.println("Available Rooms: " + suiteAvailability);
-        System.out.println();
-
-        System.out.println("Application Terminated.");
+        System.out.println("\n============================");
     }
 }
