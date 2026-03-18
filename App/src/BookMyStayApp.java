@@ -1,4 +1,36 @@
-public class RoomSearchService {
+class Reservation {
+
+    /** Name of the guest making the booking */
+    private String guestName;
+
+    /** Requested room type */
+    private String roomType;
+
+    /**
+     * Creates a new booking request
+     */
+    public Reservation(String guestName, String roomType) {
+        this.guestName = guestName;
+        this.roomType = roomType;
+    }
+
+    /** Returns guest name */
+    public String getGuestName() {
+        return guestName;
+    }
+
+    /** Returns requested room type */
+    public String getRoomType() {
+        return roomType;
+    }
+
+    /** Display reservation request */
+    public void displayRequest() {
+        System.out.println("Guest: " + guestName + " | Room Type: " + roomType);
+    }
+}
+
+class RoomSearchService {
 
     /**
      * Displays available rooms with details and pricing.
@@ -12,7 +44,6 @@ public class RoomSearchService {
 
         System.out.println("\n===== Available Rooms =====");
 
-        // Check Single Room availability
         int singleAvailable = inventory.getAvailability("SingleRoom");
         if (singleAvailable > 0) {
             System.out.println("\nSingle Room:");
@@ -20,7 +51,6 @@ public class RoomSearchService {
             System.out.println("Available Rooms: " + singleAvailable);
         }
 
-        // Check Double Room availability
         int doubleAvailable = inventory.getAvailability("DoubleRoom");
         if (doubleAvailable > 0) {
             System.out.println("\nDouble Room:");
@@ -28,7 +58,6 @@ public class RoomSearchService {
             System.out.println("Available Rooms: " + doubleAvailable);
         }
 
-        // Check Suite Room availability
         int suiteAvailable = inventory.getAvailability("SuiteRoom");
         if (suiteAvailable > 0) {
             System.out.println("\nSuite Room:");
